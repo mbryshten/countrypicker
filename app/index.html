@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-ng-app="CountryPickerDemo">
+<head>
+  <meta charset="utf-8">
+  <title>Country Picker</title>
+  <link rel="stylesheet" href="css/app.css">  
+  	<script src="lib/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="directives/countryPicker.js"></script>
+</head>
+<body>
+
+<div ng-controller="DemoController">
+	
+	<h4>Selected Countries: </h4> {{ countries }}
+	
+	<h3>Select one or more countries from the list below:</h3>
+	
+	<p>For windows: Hold down the control (ctrl) button to select multiple options</p>
+	<p>For Mac: Hold down the command button to select multiple options</p>
+	
+	<country-picker bind-to="countries" filter="filterCountries(arg)"></country-picker>
+	
+</div>	
+	
+	<!-- Template is stored inside index.html to demonstrate 
+	a functionality without running this on the server.
+	Otherwise there will be an issue with running a request to fetch the template -->
+	
+	<script type="text/ng-template" id="countryPicker.html">
+  		<div>
+		<select ng-model="bindTo" size="20" multiple>
+	    	<option value="{{ country.code }}" ng-repeat="country in allCountries">{{ country.name }}</option>
+		</select>
+		
+		</div>
+	</script>
+	
+</body>
+</html>
